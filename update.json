@@ -17,13 +17,15 @@
       "required": false,
       "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v2.5.0/YouTubeDownloaderPRO.exe",
       "sha256": "199c40cb715d101218e25dc04aa4ebee6cf5e9426fbc71a1395ffb597472a066",
-      "notes": ["Versão inicial do canal de testes"]
+      "notes": [
+        "Versão inicial do canal de testes"
+      ]
     }
   },
   "licenses": {
-    "permanent": [
+    "permanent": [],
+    "blocked": [
       "12E6-EF13-8682-E380-70F5"
-    ],
-    "blocked": []
+    ]
   }
 }

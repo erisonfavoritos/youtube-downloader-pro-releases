@@ -23,9 +23,7 @@
     }
   },
   "licenses": {
-    "permanent": [
-      "12E6-EF13-8682-E380-70F5"
-    ],
+    "permanent": [],
     "blocked": []
   }
 }

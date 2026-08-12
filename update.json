@@ -2,14 +2,14 @@
   "schema": 1,
   "channels": {
     "stable": {
-      "version": "2.6.1",
+      "version": "2.7.0",
       "required": false,
-      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v2.6.1/YouTubeDownloaderPRO.exe",
-      "sha256": "c6e6aaca902a1ce6dac72bd886f0d865888dfc42b0d47b1ee9c941d4d7f9a76f",
+      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v2.7.0/YouTubeDownloaderPRO.exe",
+      "sha256": "f8394bb6d93dd3932e4f7f2842a71cbdf319a2dbfc9efe860500c4788de3f286",
       "notes": [
-        "Atualizador com retorno automático à versão anterior em caso de falha",
-        "Log externo de diagnóstico da atualização",
-        "Pacote recompilado para maior compatibilidade"
+        "Solicitação de desbloqueio com QR Code Pix de R$ 29,90",
+        "E-mail de comprovante preenchido automaticamente",
+        "Pagamento e contato configuráveis pelo Gerenciador"
       ]
     },
     "beta": {

@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "channels": {
+    "stable": {
+      "version": "2.5.0",
+      "required": false,
+      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v2.5.0/YouTubeDownloaderPRO.exe",
+      "sha256": "199c40cb715d101218e25dc04aa4ebee6cf5e9426fbc71a1395ffb597472a066",
+      "notes": [
+        "Atualização automática e segura pelo GitHub",
+        "Licença permanente e bloqueio por ID do computador",
+        "Canal estável com recuperação da versão anterior"
+      ]
+    },
+    "beta": {
+      "version": "2.5.0",
+      "required": false,
+      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v2.5.0/YouTubeDownloaderPRO.exe",
+      "sha256": "199c40cb715d101218e25dc04aa4ebee6cf5e9426fbc71a1395ffb597472a066",
+      "notes": ["Versão inicial do canal de testes"]
+    }
+  },
+  "licenses": {
+    "permanent": [],
+    "blocked": []
+  }
+}

@@ -2,13 +2,14 @@
   "schema": 1,
   "channels": {
     "stable": {
-      "version": "2.7.1",
+      "version": "2.7.2",
       "required": false,
-      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v2.7.1/YouTubeDownloaderPRO.exe",
-      "sha256": "087f5215631a43eabe2cc12a6c620e71af76231a92fc7488ac81d843c11fa444",
+      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v2.7.2/YouTubeDownloaderPRO.exe",
+      "sha256": "f89fcf29223a5d00252cb6f1f3c233ac9c5f7f4ceae55a5e76de15200897867a",
       "notes": [
-        "Backup temporário removido após confirmar a nova versão",
-        "Restauração automática mantida se a atualização falhar"
+        "Correção dos parâmetros de silêncio enviados ao FFmpeg",
+        "Leitura UTF-8 tolerante da saída do FFmpeg",
+        "Migração automática das configurações antigas"
       ]
     },
     "beta": {

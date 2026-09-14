@@ -1,0 +1,71 @@
+name: Publicar atualização
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Versão sem o prefixo v (ex. 3.1.0)
+        required: true
+        type: string
+      channel:
+        description: Canal de publicação
+        required: true
+        default: stable
+        type: choice
+        options: [stable, beta]
+      required_update:
+        description: Tornar a atualização obrigatória
+        required: true
+        default: false
+        type: boolean
+      notes:
+        description: Novidades, uma por linha
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Instalar compilador
+        run: python -m pip install --upgrade pip pyinstaller
+      - name: Gerar executável
+        run: python -m PyInstaller --noconfirm --clean --onefile --windowed --name YouTubeDownloaderPRO youtube_downloader.py
+      - name: Gerar manifesto de atualização
+        shell: pwsh
+        run: |
+          $hash = (Get-FileHash -Algorithm SHA256 dist/YouTubeDownloaderPRO.exe).Hash.ToLower()
+          $notes = @"
+          ${{ inputs.notes }}
+          "@ -split "`r?`n" | Where-Object { $_.Trim() }
+          $manifest = @{ channels = @{ ${{ inputs.channel }} = @{
+            version = "${{ inputs.version }}"
+            required = [System.Convert]::ToBoolean("${{ inputs.required_update }}")
+            download_url = "https://github.com/${{ github.repository }}/releases/download/v${{ inputs.version }}/YouTubeDownloaderPRO.exe"
+            sha256 = $hash
+            notes = @($notes)
+          } } }
+          $manifest | ConvertTo-Json -Depth 5 | Set-Content -Encoding utf8 update.json
+      - name: Criar Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ inputs.version }}
+          name: YouTube Downloader PRO v${{ inputs.version }}
+          prerelease: ${{ inputs.channel == 'beta' }}
+          body: ${{ inputs.notes }}
+          files: dist/YouTubeDownloaderPRO.exe
+      - name: Publicar manifesto
+        shell: pwsh
+        run: |
+          git config user.name "youtube-downloader-pro-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add update.json
+          git commit -m "Publicar atualização v${{ inputs.version }}" || exit 0
+          git push

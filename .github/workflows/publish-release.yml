@@ -23,7 +23,7 @@ on:
         required: false
         type: string
       executable_url:
-        description: URL temporária do executável enviado pelo painel
+        description: URL temporária do pacote ZIP enviado pelo painel
         required: true
         type: string
       version_file_url:
@@ -43,8 +43,12 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path dist | Out-Null
-          Invoke-WebRequest -Uri "${{ inputs.executable_url }}" -OutFile dist/YouTubeDownloaderPRO.exe
+          Invoke-WebRequest -Uri "${{ inputs.executable_url }}" -OutFile dist/pacote-atualizacao.zip
           Invoke-WebRequest -Uri "${{ inputs.version_file_url }}" -OutFile dist/versao.txt
+          Expand-Archive -LiteralPath dist/pacote-atualizacao.zip -DestinationPath dist/pacote -Force
+          $executables = @(Get-ChildItem -Path dist/pacote -Filter *.exe -File -Recurse)
+          if ($executables.Count -ne 1) { throw "O .zip precisa conter exatamente um arquivo .exe." }
+          Copy-Item -LiteralPath $executables[0].FullName -Destination dist/YouTubeDownloaderPRO.exe -Force
           if ((Get-Item dist/YouTubeDownloaderPRO.exe).Length -lt 1024) { throw "O executável enviado é inválido ou está vazio." }
           $declaredVersion = (Get-Content -Raw dist/versao.txt).Trim()
           if ($declaredVersion -notmatch [regex]::Escape("${{ inputs.version }}")) { throw "O versao.txt não corresponde à versão ${{ inputs.version }} informada no painel." }

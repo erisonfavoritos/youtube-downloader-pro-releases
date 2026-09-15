@@ -1,13 +1,13 @@
 {
   "channels": {
     "stable": {
-      "sha256": "a04f7f29ff07c445f8c03fcb02e55765013d2cd15679d7ff0fe3dd37c449d5bb",
-      "version": "3.0.0",
-      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v3.0.0/YouTubeDownloaderPRO.exe",
+      "sha256": "ce0502f460c5347379ae2b8fc14f767d91a107eca3d39bb582b778952b9e5af3",
       "required": false,
       "notes": [
-        "Teste após regeneração do token GitHub"
-      ]
+        "Melhorias e correções gerais"
+      ],
+      "version": "3.0.0",
+      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v3.0.0/YouTubeDownloaderPRO.exe"
     }
   }
 }

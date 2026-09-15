@@ -22,6 +22,14 @@ on:
         description: Novidades, uma por linha
         required: false
         type: string
+      executable_url:
+        description: URL temporária do executável enviado pelo painel
+        required: true
+        type: string
+      version_file_url:
+        description: URL do arquivo versao.txt enviado pelo painel
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -31,13 +39,15 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Instalar compilador
-        run: python -m pip install --upgrade pip pyinstaller
-      - name: Gerar executável
-        run: python -m PyInstaller --noconfirm --clean --onefile --windowed --name YouTubeDownloaderPRO youtube_downloader.py
+      - name: Baixar e validar arquivos enviados pelo painel
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Invoke-WebRequest -Uri "${{ inputs.executable_url }}" -OutFile dist/YouTubeDownloaderPRO.exe
+          Invoke-WebRequest -Uri "${{ inputs.version_file_url }}" -OutFile dist/versao.txt
+          if ((Get-Item dist/YouTubeDownloaderPRO.exe).Length -lt 1024) { throw "O executável enviado é inválido ou está vazio." }
+          $declaredVersion = (Get-Content -Raw dist/versao.txt).Trim()
+          if ($declaredVersion -notmatch [regex]::Escape("${{ inputs.version }}")) { throw "O versao.txt não corresponde à versão ${{ inputs.version }} informada no painel." }
       - name: Gerar manifesto de atualização
         shell: pwsh
         run: |
@@ -60,7 +70,9 @@ jobs:
           name: YouTube Downloader PRO v${{ inputs.version }}
           prerelease: ${{ inputs.channel == 'beta' }}
           body: ${{ inputs.notes }}
-          files: dist/YouTubeDownloaderPRO.exe
+          files: |
+            dist/YouTubeDownloaderPRO.exe
+            dist/versao.txt
       - name: Publicar manifesto
         shell: pwsh
         run: |

@@ -1,37 +1,13 @@
 {
-  "schema": 1,
   "channels": {
     "stable": {
-      "version": "2.7.2",
+      "sha256": "a04f7f29ff07c445f8c03fcb02e55765013d2cd15679d7ff0fe3dd37c449d5bb",
+      "version": "3.0.0",
+      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v3.0.0/YouTubeDownloaderPRO.exe",
       "required": false,
-      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v2.7.2/YouTubeDownloaderPRO.exe",
-      "sha256": "f89fcf29223a5d00252cb6f1f3c233ac9c5f7f4ceae55a5e76de15200897867a",
       "notes": [
-        "Correção dos parâmetros de silêncio enviados ao FFmpeg",
-        "Leitura UTF-8 tolerante da saída do FFmpeg",
-        "Migração automática das configurações antigas"
-      ]
-    },
-    "beta": {
-      "version": "2.5.0",
-      "required": false,
-      "download_url": "https://github.com/erisonfavoritos/youtube-downloader-pro-releases/releases/download/v2.5.0/YouTubeDownloaderPRO.exe",
-      "sha256": "199c40cb715d101218e25dc04aa4ebee6cf5e9426fbc71a1395ffb597472a066",
-      "notes": [
-        "Versão inicial do canal de testes"
+        "Teste após regeneração do token GitHub"
       ]
     }
-  },
-  "licenses": {
-    "permanent": [],
-    "blocked": []
-  },
-  "support": {
-    "email": "marcodacasco@yahoo.com.br",
-    "pix_key": "873f69b8-d13f-46a9-85e4-50ad47de60a1",
-    "pix_name": "ERESON SILVA LIMA",
-    "pix_city": "CUIABA",
-    "price": "29.90",
-    "license_days": 365
   }
 }
